@@ -20,8 +20,12 @@ class RecipeListResource(Resource):
             cook_time=data["cook_time"],
             directions=data["directions"],
         )
-        recipe_list.append(recipe)  # mengisi recipe_list dengan data
-        return recipe.data, HTTPStatus.CREATED  # status created
+        recipe.save()
+        data = {"id": recipe.id, "name": recipe.name, "description": recipe.description, "num_of_servings": recipe.num_of_servings, "cook_time": recipe.cook_time, "directions": recipe.directions}
+        return data, HTTPStatus.CREATED
+        # recipe_list.append(recipe)  # mengisi recipe_list dengan data
+        # return recipe.data, HTTPStatus.CREATED  # status created
+        
 
 class RecipeResource(Resource):
     def get(self, recipe_id):

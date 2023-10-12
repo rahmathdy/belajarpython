@@ -39,3 +39,7 @@ class Recipe(db.Model):
             "cook_time": self.cook_time, 
             "directions": self.directions
         }
+    
+    def save(self):
+        db.session.add(self)
+        db.session.commit()

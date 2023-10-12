@@ -6,6 +6,7 @@ from extensions import db
 from models.user import User
 from models.recipe import Recipe
 from resources.recipe import RecipeListResource, RecipeResource, RecipePublishResource
+from resources.user import *
 
 
 def create_app():
@@ -23,6 +24,7 @@ def register_extensions(app):
 
 def register_resources(app):
     api = Api(app)
+    api.add_resource(UserListResource, "/user")
     api.add_resource(RecipeListResource, "/recipes")
     api.add_resource(RecipeResource, "/recipes/<int:recipe_id>")
     api.add_resource(RecipePublishResource, "/recipes/<int:recipe_id>/publish")
